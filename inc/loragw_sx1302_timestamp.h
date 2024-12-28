@@ -30,8 +30,6 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 #include "loragw_hal.h"
 #include "loragw_sx1302.h"
 
-#include "config.h"     /* library configuration options (dynamically generated) */
-
 /* -------------------------------------------------------------------------- */
 /* --- PUBLIC CONSTANTS ----------------------------------------------------- */
 

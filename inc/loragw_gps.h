@@ -27,8 +27,6 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 #include <termios.h>    /* speed_t */
 #include <unistd.h>     /* ssize_t */
 
-#include "config.h"     /* library configuration options (dynamically generated) */
-
 /* -------------------------------------------------------------------------- */
 /* --- PUBLIC TYPES --------------------------------------------------------- */
 

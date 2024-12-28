@@ -23,8 +23,6 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 #include <stdbool.h>    /* bool type */
 #include <sys/time.h>   /* gettimeofday, structtimeval */
 
-#include "config.h"     /* library configuration options (dynamically generated) */
-
 /* -------------------------------------------------------------------------- */
 /* --- PUBLIC CONSTANTS ----------------------------------------------------- */
 

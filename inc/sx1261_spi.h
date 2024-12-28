@@ -24,8 +24,6 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 
 #include "sx1261_defs.h"
 
-#include "config.h"     /* library configuration options (dynamically generated) */
-
 /* -------------------------------------------------------------------------- */
 /* --- PUBLIC MACROS -------------------------------------------------------- */
 

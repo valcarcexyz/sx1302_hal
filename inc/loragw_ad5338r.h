@@ -19,8 +19,6 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 #include <stdint.h>     /* C99 types */
 #include <stdbool.h>    /* bool type */
 
-#include "config.h"     /* library configuration options (dynamically generated) */
-
 /* -------------------------------------------------------------------------- */
 /* --- PRIVATE MACROS ------------------------------------------------------- */
 
