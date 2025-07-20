@@ -22,44 +22,12 @@ LIBS := -lloragw -ltinymt32 -lrt -lm
 
 ### general build targets
 
-all: 	libloragw.a \
-		test_loragw_com \
-		test_loragw_i2c \
-		test_loragw_reg \
-		test_loragw_hal_tx \
-		test_loragw_hal_rx \
-		test_loragw_cal_sx125x \
-		test_loragw_capture_ram \
-		test_loragw_com_sx1250 \
-		test_loragw_com_sx1261 \
-		test_loragw_counter \
-		test_loragw_gps \
-		test_loragw_toa \
-		test_loragw_sx1261_rssi
+all: libloragw.a
 
 clean:
 	rm -f libloragw.a
-	rm -f test_loragw_*
 	rm -f $(OBJDIR)/*.o
 	rm -f inc/config.h
-
-install:
-ifneq ($(strip $(TARGET_IP)),)
- ifneq ($(strip $(TARGET_DIR)),)
-  ifneq ($(strip $(TARGET_USR)),)
-	@echo "---- Copying libloragw files to $(TARGET_IP):$(TARGET_DIR)"
-	@ssh $(TARGET_USR)@$(TARGET_IP) "mkdir -p $(TARGET_DIR)"
-	@scp test_loragw_* $(TARGET_USR)@$(TARGET_IP):$(TARGET_DIR)
-	@scp ../tools/reset_lgw.sh $(TARGET_USR)@$(TARGET_IP):$(TARGET_DIR)
-  else
-	@echo "ERROR: TARGET_USR is not configured in target.cfg"
-  endif
- else
-	@echo "ERROR: TARGET_DIR is not configured in target.cfg"
- endif
-else
-	@echo "ERROR: TARGET_IP is not configured in target.cfg"
-endif
 
 ### transpose library.cfg into a C header file : config.h
 
@@ -126,46 +94,5 @@ libloragw.a: $(OBJDIR)/loragw_spi.o \
 			 $(OBJDIR)/loragw_sx1302_rx.o \
 			 $(OBJDIR)/loragw_ad5338r.o
 	$(AR) rcs $@ $^
-
-### test programs
-
-test_loragw_com: tst/test_loragw_com.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools $< -o $@ $(LIBS)
-
-test_loragw_i2c: tst/test_loragw_i2c.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools $< -o $@ $(LIBS)
-
-test_loragw_reg: tst/test_loragw_reg.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools $< -o $@ $(LIBS)
-
-test_loragw_hal_tx: tst/test_loragw_hal_tx.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools $< -o $@ $(LIBS)
-
-test_loragw_hal_rx: tst/test_loragw_hal_rx.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools $< -o $@ $(LIBS)
-
-test_loragw_capture_ram: tst/test_loragw_capture_ram.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools  $< -o $@ $(LIBS)
-
-test_loragw_cal_sx125x: tst/test_loragw_cal_sx125x.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools  $< -o $@ $(LIBS)
-
-test_loragw_com_sx1250: tst/test_loragw_com_sx1250.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools  $< -o $@ $(LIBS)
-
-test_loragw_com_sx1261: tst/test_loragw_com_sx1261.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools  $< -o $@ $(LIBS)
-
-test_loragw_counter: tst/test_loragw_counter.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools  $< -o $@ $(LIBS)
-
-test_loragw_gps: tst/test_loragw_gps.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools  $< -o $@ $(LIBS)
-
-test_loragw_toa: tst/test_loragw_toa.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools  $< -o $@ $(LIBS)
-
-test_loragw_sx1261_rssi: tst/test_loragw_sx1261_rssi.c libloragw.a
-	$(CC) $(CFLAGS) -L. -L../libtools  $< -o $@ $(LIBS)
 
 ### EOF
