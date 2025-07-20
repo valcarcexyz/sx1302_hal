@@ -1,8 +1,8 @@
 ### get external defined data
 
-LIBLORAGW_VERSION := `cat ../VERSION`
+LIBLORAGW_VERSION := `cat VERSION`
 include library.cfg
-include ../target.cfg
+include target.cfg
 
 ### constant symbols
 
@@ -11,10 +11,10 @@ CROSS_COMPILE ?=
 CC := $(CROSS_COMPILE)gcc
 AR := $(CROSS_COMPILE)ar
 
-CFLAGS := -O2 -Wall -Wextra -std=c99 -Iinc -I. -I../libtools/inc
+CFLAGS := -O2 -Wall -Wextra -std=c99 -Iinc -I.
 
 OBJDIR = obj
-INCLUDES = $(wildcard inc/*.h) $(wildcard ../libtools/inc/*.h)
+INCLUDES = $(wildcard inc/*.h)
 
 ### linking options
 
@@ -31,7 +31,7 @@ clean:
 
 ### transpose library.cfg into a C header file : config.h
 
-inc/config.h: ../VERSION library.cfg
+inc/config.h: VERSION library.cfg
 	@echo "*** Checking libloragw library configuration ***"
 	@rm -f $@
 	#File initialization
