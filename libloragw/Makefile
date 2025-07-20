@@ -101,17 +101,14 @@ $(OBJDIR)/%.o: src/%.c $(INCLUDES) inc/config.h | $(OBJDIR)
 ### static library
 
 libloragw.a: $(OBJDIR)/loragw_spi.o \
-			 $(OBJDIR)/loragw_usb.o \
 			 $(OBJDIR)/loragw_com.o \
 			 $(OBJDIR)/loragw_mcu.o \
 			 $(OBJDIR)/loragw_i2c.o \
 			 $(OBJDIR)/sx125x_spi.o \
 			 $(OBJDIR)/sx125x_com.o \
 			 $(OBJDIR)/sx1250_spi.o \
-			 $(OBJDIR)/sx1250_usb.o \
 			 $(OBJDIR)/sx1250_com.o \
 			 $(OBJDIR)/sx1261_spi.o \
-			 $(OBJDIR)/sx1261_usb.o \
 			 $(OBJDIR)/sx1261_com.o \
 			 $(OBJDIR)/loragw_aux.o \
 			 $(OBJDIR)/loragw_reg.o \

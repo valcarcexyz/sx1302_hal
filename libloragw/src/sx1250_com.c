@@ -21,7 +21,6 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 
 #include "sx1250_com.h"
 #include "sx1250_spi.h"
-#include "sx1250_usb.h"
 
 /* -------------------------------------------------------------------------- */
 /* --- PRIVATE MACROS ------------------------------------------------------- */
@@ -54,9 +53,6 @@ int sx1250_com_w(lgw_com_type_t com_type, void *com_target, uint8_t spi_mux_targ
         case LGW_COM_SPI:
             com_stat = sx1250_spi_w(com_target, spi_mux_target, op_code, data, size);
             break;
-        case LGW_COM_USB:
-            com_stat = sx1250_usb_w(com_target, spi_mux_target, op_code, data, size);
-            break;
         default:
             printf("ERROR: wrong communication type (SHOULD NOT HAPPEN)\n");
             com_stat = LGW_COM_ERROR;
@@ -78,9 +74,6 @@ int sx1250_com_r(lgw_com_type_t com_type, void *com_target, uint8_t spi_mux_targ
     switch (com_type) {
         case LGW_COM_SPI:
             com_stat = sx1250_spi_r(com_target, spi_mux_target, op_code, data, size);
-            break;
-        case LGW_COM_USB:
-            com_stat = sx1250_usb_r(com_target, spi_mux_target, op_code, data, size);
             break;
         default:
             printf("ERROR: wrong communication type (SHOULD NOT HAPPEN)\n");

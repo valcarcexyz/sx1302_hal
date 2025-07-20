@@ -23,7 +23,6 @@ License: Revised BSD License, see LICENSE.TXT file include in the project
 #include "loragw_spi.h"
 #include "sx1261_com.h"
 #include "sx1261_spi.h"
-#include "sx1261_usb.h"
 
 /* -------------------------------------------------------------------------- */
 /* --- PRIVATE MACROS ------------------------------------------------------- */
@@ -129,9 +128,6 @@ int sx1261_com_w(sx1261_op_code_t op_code, uint8_t *data, uint16_t size) {
         case LGW_COM_SPI:
             com_stat = sx1261_spi_w(_sx1261_com_target, op_code, data, size);
             break;
-        case LGW_COM_USB:
-            com_stat = sx1261_usb_w(_sx1261_com_target, op_code, data, size);
-            break;
         default:
             printf("ERROR: wrong communication type (SHOULD NOT HAPPEN)\n");
             com_stat = LGW_COM_ERROR;
@@ -154,9 +150,6 @@ int sx1261_com_r(sx1261_op_code_t op_code, uint8_t *data, uint16_t size) {
         case LGW_COM_SPI:
             com_stat = sx1261_spi_r(_sx1261_com_target, op_code, data, size);
             break;
-        case LGW_COM_USB:
-            com_stat = sx1261_usb_r(_sx1261_com_target, op_code, data, size);
-            break;
         default:
             printf("ERROR: wrong communication type (SHOULD NOT HAPPEN)\n");
             com_stat = LGW_COM_ERROR;
@@ -175,9 +168,6 @@ int sx1261_com_set_write_mode(lgw_com_write_mode_t write_mode) {
         case LGW_COM_SPI:
             /* Do nothing: only single mode is supported on SPI */
             break;
-        case LGW_COM_USB:
-            com_stat = sx1261_usb_set_write_mode(write_mode);
-            break;
         default:
             printf("ERROR(%s:%d): wrong communication type (SHOULD NOT HAPPEN)\n", __FUNCTION__, __LINE__);
             com_stat = LGW_COM_ERROR;
@@ -195,9 +185,6 @@ int sx1261_com_flush(void) {
     switch (_sx1261_com_type) {
         case LGW_COM_SPI:
             /* Do nothing: only single mode is supported on SPI */
-            break;
-        case LGW_COM_USB:
-            com_stat = sx1261_usb_flush(_sx1261_com_target);
             break;
         default:
             printf("ERROR(%s:%d): wrong communication type (SHOULD NOT HAPPEN)\n", __FUNCTION__, __LINE__);
